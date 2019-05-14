@@ -1,0 +1,10 @@
+{
+	"compilerOptions": {
+		"sourceMap": true,
+		"target": "ES2017"
+	},
+	"files": [
+		"game.ts",
+		"index.ts"
+	]
+}

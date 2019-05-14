@@ -1,0 +1,297 @@
+body {
+    background: url('background.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    font: 700;
+
+    color: rgb(202, 202, 202);
+
+}
+
+.grid-container {
+    display: grid;
+    height: 100vh;
+    width: 100vw;
+    grid-template-columns: 15% 20% 10% 35% 5% 15%;
+    grid-template-rows: 10% 5% 10% 5% 20% 10% 35% 5%;
+    grid-template-areas: ". World_info World_info World_info World_info ." ". . . . . ." ". Login . Planets . ." ". . . Planets . ." ". . . Planets . ." ". . . . . ." ". . . Spaceships . ." ". . . . . .";
+}
+  
+.Login { 
+    grid-area: Login;
+    text-align: center;
+    border-radius:15px;
+    border:4px solid rgba(255, 255, 255, 0.562);
+    color: rgb(202, 202, 202);
+    background-color: rgba(0, 29, 48, 0.796);
+    text-decoration: none;
+}
+
+#login {
+    font-size: 3vh;
+    font: bold;
+}
+
+.Planets_frame { 
+    grid-area: Planets; 
+    text-align: center;
+    border-radius:15px;
+    border:4px solid rgba(255, 255, 255, 0.562);
+    color: rgb(202, 202, 202);
+    background-color: rgba(0, 29, 48, 0.796);
+    text-decoration: none;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    font-size: 3vh;
+}
+
+.Spaceships_frame { 
+    grid-area: Spaceships; 
+    text-align: center;
+    border-radius:15px;
+    border:4px solid rgba(255, 255, 255, 0.562);
+    color: rgb(202, 202, 202);
+    background-color: rgba(0, 29, 48, 0.796);
+    text-decoration: none;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    font-size: 3vh;
+}
+
+.clickable:hover {
+    color: rgb(89, 255, 227);
+    font-weight: bold;
+}
+
+table {
+    table-layout: fixed;
+    height: 100%;
+    width: 100%;
+}
+
+.name {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 3vh;
+}
+
+.World_info { 
+    grid-area: World_info; 
+    text-align: center;
+    border-radius:15px;
+    border:4px solid rgba(255, 255, 255, 0.562);
+    color: rgb(202, 202, 202);
+    background-color: rgba(0, 29, 48, 0.796);
+    text-decoration: none;
+    font-size: 3vh;
+}
+
+.button {
+    text-decoration: none;
+    color: rgb(202, 202, 202);
+	cursor: pointer;
+}
+
+.planet_popup {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+
+    font-size: 2vh;
+}
+
+.planet_popup:target {
+    visibility: visible;
+    opacity: 1;
+}
+
+.ship_on_planet_popup {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+
+    font-size: 2.5vh;
+}
+
+.ship_on_planet_popup:target {
+    visibility: visible;
+    opacity: 1;
+}
+ 
+.ship_in_space_popup {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+
+    font-size: 2vh;
+}
+
+.ship_in_space_popup:target {
+    visibility: visible;
+    opacity: 1;
+}
+
+.end_game_popup {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+
+    font-size: 2.5vh;
+}
+
+.end_game_popup:target {
+    visibility: visible;
+    opacity: 1;
+}
+
+.popup {
+    display: flex;
+    flex-flow: column;
+    background-color: rgba(0, 29, 48, 0.796);
+	border-radius: 15px;
+    border: 4px solid rgba(255, 255, 255, 0.762);
+    margin: 11vh auto;
+    padding: 20px;
+    border-radius: 5px;
+    width: 40%;
+    max-height: 75%;
+    position: relative;
+    transition: all 250ms ease-in-out;
+}
+  
+.items_table {
+    height: 20%;
+    overflow: auto;
+    background-color: rgba(0, 44, 73, 0.736);
+    font-size: 2vh;
+}
+
+.items_table_in_space {
+    height: 60%;
+    overflow: auto;
+    background-color: rgba(0, 44, 73, 0.736);
+}
+
+.popup .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    text-decoration: none;
+    color: rgb(202, 202, 202);
+}
+
+.popup .content {
+    display: flex;
+    flex-flow: column;
+}
+
+ol {
+    overflow: auto;
+    max-height: 70%;
+}
+
+ol li a{
+    text-decoration: none;
+    color: rgb(202, 202, 202);
+}
+
+.planet_popup .items_table {
+    height: 90%;
+}
+
+.items_table .name_in_table {
+    width: 99%;
+}
+
+.items_table td {
+    width: 120px;
+}
+
+.Quantity {
+    width: 50px;
+}
+
+#next_destination {
+    font-size: 1.5vh;
+}
+
+@media screen and (max-width: 1000px) {
+    .grid-container {
+        display: grid;
+        height: 100vh;
+        width: 100vw;
+        grid-template-columns: 5% 30% 12.5% 5% 42.5% 5%;
+        grid-template-rows: 10% 5% 10% 5% 30% 5% 30% 5%;
+        grid-template-areas: ". World_info World_info World_info World_info ." ". . . . . ." ". Login . . . ." ". . . . . ." ". Planets Planets Planets Planets ." ". . . . . ." ". Spaceships Spaceships Spaceships Spaceships ." ". . . . . .";
+    }
+
+    .Login {
+        font-size: 2vh;
+    }
+
+    #login {
+        font-size: 2vh;
+    }
+
+    .Spaceships {
+        font-size: 2vh;
+    }
+
+    .Planets {
+        font-size: 2vh;
+    }
+
+    .World_info {
+        font-size: 2vh;
+    }
+
+    .popup {
+        width: 80%;
+    }
+
+    .name {
+        margin-bottom: 2px; 
+    }
+
+    .items_table {
+        height: 15%;
+    }
+
+    ol {
+        overflow: auto;
+        max-height: 45%;
+    }
+
+    .items_table td {
+        width: 70px;
+        text-align: center;
+    }
+}
