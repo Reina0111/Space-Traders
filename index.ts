@@ -1,10 +1,10 @@
 if (!localStorage.getItem("Space Traders Scoreboard")) {
     localStorage.setItem("Space Traders Scoreboard", JSON.stringify([
         ["Nami", 7373],
+        ["Robin", 6287],
         ["Luffy", 2955],
         ["Zoro", 1984],
-        ["Robert'); DROP TABLE Students;--", -1],
-        []
+        ["Chopper", 110]
     ]));
 }
 

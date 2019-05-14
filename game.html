@@ -61,19 +61,19 @@
             <div class="content">
 
                 <div class="name">Trade Goods</div>
-                <div class="items_table">
+                <div class="items_table_in_space">
                     <table>
                         <thead>
-                        <tr>
-                            <td class="name_in_table">Name</td>
-                            <td>#</td>
-                            <td>Buy</td>
-                            <td>Sell</td>
-                        </tr>
-                    </thead>
-                    <tbody id="planetStorage">
+                            <tr>
+                                <td class="name_in_table">Name</td>
+                                <td>#</td>
+                                <td>Buy</td>
+                                <td>Sell</td>
+                            </tr>
+                        </thead>
+                        <tbody id="planetStorage">
 
-                    </tbody>
+                        </tbody>
                     </table>
                 </div>
                 <div class="ships_list">
@@ -187,12 +187,31 @@
             <div>
                 <div class="name">Your score:</div>
                 <div id="score"></div>
-                
+
                 <a class="button clickable" href="index.html">Go back to main menu</a>
             </div>
         </div>
     </div>
 
+    <div id="cantbuy_price" class="cantbuy_popup">
+        <div class="popup">
+            <div class="name">Error</div>
+            <a class="close" href="#">&times;</a>
+            <div>
+                You don't have required money!
+            </div>
+        </div>
+    </div>
+
+    <div id="cantbuy_storage" class="cantbuy_storage_popup">
+            <div class="popup">
+                <div class="name">Error</div>
+                <a class="close" href="#">&times;</a>
+                <div>
+                    You don't have required space in storage!
+                </div>
+            </div>
+        </div>
 
     <script src="game.js"></script>
 

@@ -765,6 +765,7 @@ interface IShip {
 let planets = dataStructure.planets as IPlanet;
 let ships = dataStructure.starships as IShip;
 
+/* Get scoreboard from localStorage */
 let scoreboard = JSON.parse(localStorage.getItem("Space Traders Scoreboard"));
 
 /* Setting login in game */
@@ -818,13 +819,14 @@ function setTableOfPlanets() {
 }
 setTableOfPlanets();
 
-
+/* Clear table/select/etc list */
 function clear(element) {
     while (element.hasChildNodes()) {
         element.removeChild(element.firstChild);
     }
 }
 
+/* Open popup with ship in space */
 function openShipInSpace(ship) {
     let myName = document.getElementById('nameShipInSpace');
     myName.textContent = ship;
@@ -916,7 +918,7 @@ function refreshPlanetStorage(planet: string) {
     }
 }
 
-
+/* Getting time needed for getting to destination */
 function getTime(start, destination) {
     let xStart = planets[start].x;
     let yStart = planets[start].y;
@@ -927,6 +929,7 @@ function getTime(start, destination) {
     return Math.round(Math.sqrt(Math.pow(xStart - xDest, 2) + Math.pow(yStart - yDest, 2)));
 }
 
+/* Making list of planets without current one */
 function makeFlyList(planet) {
     let select = <HTMLSelectElement>document.getElementById('destination_list');
     clear(select);
@@ -942,6 +945,7 @@ function makeFlyList(planet) {
     }
 }
 
+/* Setting arrival time after selecting option from destination_list */
 function setTime() {
     let currentPlanet = document.getElementById('position').textContent;
     let index = (<HTMLSelectElement>document.getElementById('destination_list')).selectedIndex;
@@ -962,6 +966,7 @@ function openShipOnPlanet(ship: string) {
     window.location.href = "#ship_on_planet";
 }
 
+/* Starting travel for current ship */
 function startTravel() {
     let ship = document.getElementById('nameShipOnPlanet').textContent;
     let index = (<HTMLSelectElement>document.getElementById('destination_list')).selectedIndex;
@@ -977,7 +982,7 @@ function startTravel() {
     openShip(ship);
 }
 
-
+/* Open ship */
 function openShip(ship) {
     if (ships[ship].moving) {
         openShipInSpace(ship);
@@ -986,6 +991,7 @@ function openShip(ship) {
     }
 }
 
+/* Open planet */
 function openPlanet(planet: string) {
     if (planet)
         document.getElementById('planetName').textContent = planet;
@@ -1029,12 +1035,13 @@ function openPlanet(planet: string) {
 
 }
 
+/* Getting minimum value */
 function min(a: Number, b: Number) {
     if (a < b) return a;
     else return b;
 }
 
-
+/* Adding items to planet storage after selling */
 function addItemsToPlanet(planet, list) {
     for (let i = 0; i < list.length; i++) {
         let done = false;
@@ -1052,6 +1059,7 @@ function addItemsToPlanet(planet, list) {
 }
 
 
+/* Removing items from ship storage after selling */
 function removeItemsFromShip(ship, list) {
     let fordelete = [];
     for (let i = 0; i < list.length; i++) {
@@ -1069,6 +1077,7 @@ function removeItemsFromShip(ship, list) {
     }
 }
 
+/* Selling items */
 function sellItems() {
     let ship = document.getElementById('nameShipOnPlanet').textContent;
     let items = document.getElementsByClassName("sellItem");
@@ -1108,6 +1117,7 @@ function sellItems() {
 }
 
 
+/* Adding items to ship storage after buying */
 function addItemsToShip(ship: string, list) {
     if (!ships[ship].items) ships[ship].items = [];
     for (let i = 0; i < list.length; i++) {
@@ -1126,6 +1136,7 @@ function addItemsToShip(ship: string, list) {
     }
 }
 
+/* Removing items from planet storage after buying */
 function removeItemsFromPlanet(planet, list) {
     for (let i = 0; i < list.length; i++) {
         for (let item in planets[planet].available_items) {
@@ -1136,6 +1147,7 @@ function removeItemsFromPlanet(planet, list) {
     }
 }
 
+/* Buying items */
 function buyItems() {
     let ship = document.getElementById('nameShipOnPlanet').textContent;
     let items = document.getElementsByClassName("buyItem");
@@ -1172,6 +1184,11 @@ function buyItems() {
         ships[ship].items_quantity += newItems
         addItemsToShip(ship, list);
         removeItemsFromPlanet(ships[ship].position, list);
+    } else {
+        if(price > money)
+        alert("You don't have this much money!");
+        else
+        alert("You don't have this much storage space!");
     }
 
     refreshShipStorageOnPlanet(ship);
@@ -1194,7 +1211,6 @@ function endGame() {
 
     scoreboard.splice(i, 0, [login, score]);
     scoreboard.splice(10, 1);
-    console.log(scoreboard)
 
     window.localStorage.setItem("Space Traders Scoreboard", JSON.stringify(scoreboard));
     window.location.href = "#end_game";
@@ -1224,18 +1240,13 @@ let interval = setInterval(function () {
                 document.getElementById(ship + 'Position').textContent = ships[ship].position;
                 document.getElementById(ship + 'Position').setAttribute("onclick", "openPlanet(\"" + ships[ship].position + "\"");
                 document.getElementById(ship + 'Position').setAttribute("class", "clickable");
+
+                let place = window.location.href.split("#").pop();
+                if(place === "ship_in_space" && document.getElementById('nameShipInSpace').textContent === ship) {
+                    openShip(ship);
+                }
             }
         }
     }
 
 }, 1000);
-
-/**
- * TODO
- * 
- * komentarze
- * 
- * popup, że nie można kupić
- * 
- * przełączenie po dotarciu na planetę
- */

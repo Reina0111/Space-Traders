@@ -30,7 +30,7 @@ body {
 }
 
 #login {
-    font-size: 3vh;
+    font-size: 4vh;
     font: bold;
 }
 
@@ -186,8 +186,10 @@ table {
 }
   
 .items_table {
-    height: 20%;
-    overflow: auto;
+    min-height: 20%;
+    max-height: 30%;
+    overflow-y: auto;
+    overflow-x: hidden;
     background-color: rgba(0, 44, 73, 0.736);
     font-size: 2vh;
 }
